@@ -26,7 +26,7 @@ wizardRouter.get('/wizards', (req, res) => {
 wizardRouter.put('/wizards/:id',jsonParser,  (req, res, next) => {
     if (typeof req.body['_id'] !== 'undefined') delete req.body._id;
     Wizard.findOneAndUpdate({_id: req.params.id}, req.body)
-      .then(data => res.send('success!'))
+      .then(data => res.send(data))
       .catch(err => next({error: err}));
 });
 

@@ -43,4 +43,34 @@ describe('Mongoose Testing', () => {
             done();
         });
     });
+
+    it('Should update a Harry to Arry', done => {
+        const newWizard = new Wizard({name: 'Malfoy'});
+        newWizard.save().then(message => {
+            request.put(`localhost:5000/v1/wizards/${message._id}`).send({name: 'Arry'}).end((err, res) => {
+                expect(res.body.name).toEqual('Malfoy');
+                done();
+            });
+        });
+    });
+
+    it('Should delete Larry from the db', done => {
+        const newWizard = new Wizard({name: 'Larry'});
+        newWizard.save().then(message => {
+            request.delete(`localhost:5000/v1/wizards/${message._id}`).end((err, res) => {
+                expect(res.text).toEqual('Wizard Deleted!');
+                done();
+            });
+        });
+    });
+
+    it('Should patch a new name instead of Larry', done => {
+        const newWizard = new Wizard({name: 'Larry'});
+        newWizard.save().then(message => {
+            request.patch(`localhost:5000/v1/wizards/${message._id}`).send({name: 'Not Larry Anymore'}).end((err, res) => {
+                expect(res.text).toEqual('Patched!');
+                done();
+            });
+        });
+    });
 });
