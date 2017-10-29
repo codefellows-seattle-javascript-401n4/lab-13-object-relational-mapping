@@ -18,8 +18,10 @@
   },
   "homepage": "https://github.com/Pmookerjee/lab-13-object-relational-mapping#readme",
   "dependencies": {
+    "bluebird": "^3.5.1",
     "body-parser": "^1.18.2",
     "debug": "^3.1.0",
+    "dotenv": "^4.0.0",
     "express": "^4.16.2",
     "mongodb": "^2.2.33",
     "mongoose": "^4.12.4"
