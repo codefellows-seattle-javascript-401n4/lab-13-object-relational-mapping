@@ -21,9 +21,7 @@ costumeRouter.get('/costumes/:id', (req, res, next) => {
 
 costumeRouter.post('/costumes', jsonParser, (req, res, next) => {
 
-  console.log('body is ', req.body);
   let newCostume = new Costume(req.body);
-  console.log('newCostume is ', newCostume);
 
   newCostume.save()
     .then(data => res.send(data))
@@ -39,8 +37,6 @@ costumeRouter.put('/costumes/:id', jsonParser, (req, res, next) => {
 
 costumeRouter.patch('/costumes/:id', jsonParser, (req, res, next) => {
   delete req.body._id;
-  //$set will only update the supplied fields
-  //instead of replacing the entire object
   Costume.findOneAndUpdate({_id: req.params.id}, {$set: req.body})
     .then(() => res.send('Costume has been updated!'))
     .catch(err => next({error: err}));
