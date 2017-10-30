@@ -8,10 +8,15 @@ const Cat = require(__dirname + '/../models/cat.js');
 const catRouter = module.exports = express.Router();
 //explain line ^
 catRouter.get('/cats', (req, res, next) => {
-  let findCat = {} ;
-  Cat.find(findCat)
+  let myCats = {} ;
+  Cat.find(myCats)
   .then(cat => res.send(cat))
   .catch(err => next({statusCode: 500, error: err}));
+});
+catRouter.get('/cats/:id', (req,res, next) => {
+  Cat.findOne({_id : req.params.id})
+  .then(cat => res.send(cat))
+  .catch(err => next({statusCode: 404, message: 'This cat id isnt', error: err}));
 });
 
 catRouter.post('/cats', jsonParser, (req, res, next) =>{
@@ -28,4 +33,9 @@ catRouter.put('/cats', jsonParser, (req, res, next) =>{
   newCat.save()
     .then(data => res.send(data))
     .catch(err => next({statusCode: 500, message: 'error creating cat', error: err}));
+});
+catRouter.delete('/cats/:id', (req,res, next) =>{
+  Cat.remove({_id : req.params.id})
+  .then(cat => res.send(cat))
+  .catch(err => next({statusCode: 404, message: 'invalid id, cant delete', error:err}));
 });
