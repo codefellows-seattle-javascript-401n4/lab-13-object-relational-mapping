@@ -1,0 +1,33 @@
+{
+  "name": "lab-13-object-relational-mapping",
+  "version": "1.0.0",
+  "description": "![CF](https://camo.githubusercontent.com/70edab54bba80edb7493cad3135e9606781cbb6b/687474703a2f2f692e696d6775722e636f6d2f377635415363382e706e67) 13: ORM / Single Resource Mongo and Express API ===",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sgordon834/lab-13-object-relational-mapping.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sgordon834/lab-13-object-relational-mapping/issues"
+  },
+  "homepage": "https://github.com/sgordon834/lab-13-object-relational-mapping#readme",
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "express": "^4.16.2",
+    "jest": "^21.2.1",
+    "mongoose": "^4.12.5"
+  },
+  "devDependencies": {
+    "expect": "^21.2.1",
+    "superagent": "^3.8.0"
+  }
+}
