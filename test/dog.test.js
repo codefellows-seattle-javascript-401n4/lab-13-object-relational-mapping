@@ -25,6 +25,7 @@ test('it should create a dog', () => {
       res = res.body;
       expect(res.name).toBe('test');
       expect(res.favoriteFood).toBe('Mighty Bone');
+      expect(res.mainEnemy).toBe(undefined);
       expect(res.timeStamp).not.toBe(undefined);
       expect(res._id).not.toBe(undefined);
     });
