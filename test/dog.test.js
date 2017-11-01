@@ -5,16 +5,16 @@ const Dog = require('../models/dog');
 const mongoose = require('mongoose');
 
 process.env.DB_URL = 'mongodb://localhost:27017/dogs_dev';
-const server = require('../server');
-server.listen(5000);
+process.env.PORT = 5000;
 
 beforeAll(() => {
+  require('../lib/_server').start(process.env.PORT);
   return Dog.remove({});
 });
 
 afterAll(() => {
   mongoose.connection.close();
-  server.close();
+  require('../lib/_server').stop;
 });
 
 test('it should create a dog', () => {
