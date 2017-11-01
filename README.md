@@ -4,7 +4,7 @@
  * To grab ALL cats: `http :3000/api/v1/cats/`
  * To grab cats by id: `http :3000/api/v1/cats/-insertCatId`
  * To post a new cat `echo '{"name":"catName"}' | http :3000/api/v1/cats`
- 
+ * To DELETE a cat `http delete :3000/api/v1/cats/-cats id`
 
 
 ## Server Endpoints
