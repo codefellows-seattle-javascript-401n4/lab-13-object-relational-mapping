@@ -1,10 +1,14 @@
 ![CF](https://camo.githubusercontent.com/70edab54bba80edb7493cad3135e9606781cbb6b/687474703a2f2f692e696d6775722e636f6d2f377635415363382e706e67) 13: ORM / Single Resource Mongo and Express API
 ===
 ## How to use my Cat API
+ * Start server from root using `nodemon`
+ * test ran using `npm test`
  * To grab ALL cats: `http :3000/api/v1/cats/`
  * To grab cats by id: `http :3000/api/v1/cats/-insertCatId`
  * To post a new cat `echo '{"name":"catName"}' | http :3000/api/v1/cats`
  * To DELETE a cat `http delete :3000/api/v1/cats/-cats id`
+ * To PUT a cat `echo '{"name":"catName"}' | put http :3000/api/v1/cats/catID`
+ 
 
 
 ## Server Endpoints
