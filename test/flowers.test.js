@@ -17,6 +17,16 @@ afterAll(() => {
   server.close();
 });
 
+test('it should returns a status code of 404 for unregisterd routes', () => {
+  return request
+    .get('localhost:3000/api/v1/donkey')
+    //superagent throws an exception/terminate and throw error so you have to do .catch
+    .catch(res => {
+      expect(res.status).toBe(404);
+    });
+});
+
+
 test('it should create a flower order', () => {
   return request
     .post('localhost:3000/api/v1/flowers')
@@ -46,8 +56,19 @@ test('it should get a single flowers order', () => {
         .get('localhost:3000/api/v1/flowers/' + flower._id)
         .then(res => {
           expect(res.body.name).toBe('testSingleGet');
+          expect(res.body.color).toBe('red');
+          expect(res.body.orderedDate).not.toBe(undefined);
+          expect(res.status).toBe(200);
         });
     })
+});
+
+test('it should respond with "not found" for valid requests made with an id that was not found', () => {
+  return request
+    .get('localhost:3000/api/v1/flowers/80fabe3a8f1f9f9c97a0f4d0')
+    .catch((res) => {
+      expect(res.status).toBe(404);
+    });
 });
 
 test('it should update with a put', () => {

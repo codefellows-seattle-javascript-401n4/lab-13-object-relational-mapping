@@ -15,8 +15,17 @@ flowerRouter.get('/flowers', (req, res, next) => {
 
 flowerRouter.get('/flowers/:id', (req, res, next) => {
   Flower.findOne({_id: req.params.id})
-    .then(flowers => res.send(flowers))
-    .catch(err => next({error: err}));
+    .then(flowers => {
+      console.log(`flowers: `, flowers);
+      if(flowers === null) {
+        next({statusCode: 404});
+      } else {
+        res.send(flowers);
+      }
+    })
+    .catch(err => {
+      next({error: err})
+    });
 });
 
 
