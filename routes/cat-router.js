@@ -28,14 +28,23 @@ catRouter.post('/cats', jsonParser, (req, res, next) =>{
     //getting the data from the db and sendinging it back a response^
     .catch(err => next({statusCode: 500, message: 'error creating cat', error: err}));
 });
-catRouter.put('/cats', jsonParser, (req, res, next) =>{
-  let newCat = new Cat(req.body);
-  newCat.save()
-    .then(data => res.send(data))
-    .catch(err => next({statusCode: 500, message: 'error creating cat', error: err}));
+
+catRouter.put('/cats/:id', jsonParser, (req, res, next) => {
+  delete req.body._id;
+  Cat.findOneAndUpdate({_id: req.params.id}, req.body)
+  .then(data => res.send('success!'))
+  .catch(err => next({error: error}));
 });
-catRouter.delete('/cats/:id', (req,res, next) =>{
-  Cat.remove({_id : req.params.id})
-  .then(cat => res.send(cat))
-  .catch(err => next({statusCode: 404, message: 'invalid id, cant delete', error:err}));
+
+catRouter.patch('/cats/:id', jsonParser, (req, res, next) => {
+  delete req.body._id;
+  Cat.findOneAndUpdate({_id: req.params.id}, {$set: req.body})
+  .then(data => res.send('success!'))
+  .catch(err => next({error: err}));
+});
+
+catRouter.delete('/cats/:id', (req, res, next) => {
+  Cat.remove({_id: req.params.id})
+  .then(data => res.send('Bye bye cat!'))
+  .catch(err => next({error: err}));
 });

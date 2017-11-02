@@ -56,3 +56,29 @@ describe('GET functionality', () =>{
     });
   });
 });
+describe('PATCH functionality', () =>{
+  test('it should update with a patch', () => {
+    return (new Cat({name: 'testingapatch'})).save()
+    .then(cat => {
+      return request
+      .put('localhost:5000/api/v1/cats/' + cat._id)
+      .send({name: 'patchnewname'})
+      .then(res => {
+        expect(res.text).toBe('success!');
+      });
+    });
+  });
+});
+
+describe('PATCH functionality', () =>{
+  test('it should be able to murder a cat', () => {
+    return (new Cat({name: 'dontYouDieOnMe'})).save()
+    .then(cat => {
+      return request
+      .delete('localhost:5000/api/v1/cats/' + cat._id)
+      .then(res => {
+        expect(res.text).toBe('Bye bye cat!');
+      });
+    });
+  });
+});
