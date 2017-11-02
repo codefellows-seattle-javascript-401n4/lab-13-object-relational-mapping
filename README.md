@@ -1,6 +1,107 @@
 ![CF](https://camo.githubusercontent.com/70edab54bba80edb7493cad3135e9606781cbb6b/687474703a2f2f692e696d6775722e636f6d2f377635415363382e706e67) 13: ORM / Single Resource Mongo and Express API
 ===
 
+
+##Instructions
+
+The test for this lab is an integration test, aka acceptance test, testing the api as a whole, instead of unit test, which tests for small pieces of the app.  (Unit test the files in the Lib folder.)
+
+Remember to use a separate database for testing
+
+//install packages
+npm i --save-dev jest superagent
+//serve up mongodb in another terminal
+mongod --dbpath=./db
+//run the Tests in another terminal
+npm test
+
+
+show dbs
+
+3 database that you connect to:
+1. your development database
+2. your test database
+3. your production database
+
+https://jest-bot.github.io/jest/docs/api.html#content
+
+
+## Instructions for setting up and using MongoDB
+_google mongo Shell Quick Reference for useful commands to run in your mongo console and to verify that you have data going in and to see where things are going wrong_
+1. make a db folder for each of your project: $mkdir db
+2. make sure db is in your gitignore, so it's not commited up to github
+3. compared to SQL, there is very little setup in Mongodb
+4. to run the mongo server or mongo daemon type in the following mongo command into the console
+$mongod --dbpath=./db
+5. after running the --dbpath=./db, you will see a message at the bottom "waiting for connections on port 27017"
+6. to open a mongo console, type in _mongo_
+7. show dbs
+8. use dbs //should see 'switched to db dbs'
+9. db.flowers.find({})
+10. to start my server, run this command in another terminal: $ node server.js
+11. to create a note, open another terminal and type in this example note:
+$ echo '{"name": "Bamboo Garden", "type": "Vegetarian", "city": "Seattle Center"}' | http post localhost:3000/api/notes
+_you should see this successful result_
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Length: 101
+Content-Type: application/json; charset=utf-8
+Date: Sat, 28 Oct 2017 06:20:55 GMT
+ETag: W/"65-lNKwufD7eGlpPW8befBt4+gRCVs"
+X-Powered-By: Express
+
+`{
+    "_id": "59f421c72b61903a60194c9a",
+    "city": "Seattle Center",
+    "name": "Bamboo Garden",
+    "type": "Vegetarian"
+}`
+
+`'use strict';
+
+const request = require('superagent');
+const Flower = require('../models/flower');
+const mongoose = require('mongoose');
+
+process.env.DB_URL = 'mongodb://localhost:27017/flowers_test';
+//when we run our server that's when it's connecting to MongoDB, not when we are running server.listen
+const server = require('../server');
+server.listen(3000);`
+
+//beforeAll work like the tests, allowing you to return a promise
+beforeAll(() => {
+  //passing in an empty object to remove all flowers orders in my database
+  return Flower.remove({});
+});
+
+//when testing an array, you can check to see if array is an array, if the array has a length property, if it is an instance of Array
+
+`test('it should get a single flowers order', () => {
+  (new Flower({name: 'testSingleGet'})).save()
+    .then((flower) => {
+      return request
+        .get('localhost:3000/api/v1/flowers/' + flower._id)
+        .then(res => {
+          expect(res.body.name).toBe('testSingleGet');
+        });
+    })
+});`
+
+
+`test('it should update with a put', () => {
+  //create a flower order and apply .save to avoid saving it onto a variable
+  return (new Flower({name: 'testingAPut'})).save()
+    .then(flower => {
+      return request
+        .put('localhost:3000/api/v1/flowers/' + flower._id)
+        .send({name: 'newname'})
+        .then(res => {
+          expect(res.text).toBe('success!');
+        })
+    });
+});`
+
+
 ## Submission Instructions
   * fork this repository & create a new branch for your work
   * write all of your code in a directory named `lab-` + `<your name>` **e.g.** `lab-susan`
