@@ -1,6 +1,7 @@
 'use strict';
 
 const mongoose = require('mongoose');
+const Owner = require(__dirname + '/../models/owner.js');
 
 const catSchema = new mongoose.Schema({
   name: {type: String, required: true, unique: true},
