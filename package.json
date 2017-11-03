@@ -1,0 +1,28 @@
+{
+  "name": "lab-13-object-relational-mapping",
+  "version": "1.0.0",
+  "description": "![CF](https://camo.githubusercontent.com/70edab54bba80edb7493cad3135e9606781cbb6b/687474703a2f2f692e696d6775722e636f6d2f377635415363382e706e67) 13: ORM / Single Resource Mongo and Express API ===",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RyleeAndrews/lab-13-object-relational-mapping.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RyleeAndrews/lab-13-object-relational-mapping/issues"
+  },
+  "homepage": "https://github.com/RyleeAndrews/lab-13-object-relational-mapping#readme",
+  "devDependencies": {
+    "dotenv": "^4.0.0"
+  },
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "express": "^4.16.2",
+    "mongodb": "^2.2.33",
+    "mongoose": "^4.12.6"
+  }
+}
