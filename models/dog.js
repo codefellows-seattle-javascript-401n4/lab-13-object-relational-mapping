@@ -1,6 +1,7 @@
 'use strict';
 
 const mongoose = require('mongoose');
+const Breed = require('./breed');
 
 const dogSchema = new mongoose.Schema({
   name: {type: String, required: true, unique: true},
@@ -9,4 +10,6 @@ const dogSchema = new mongoose.Schema({
   timeStamp: {type: Date, default: Date.now}
 });
 
-const Dog = module.exports = mongoose.model('Dog', dogSchema);
+
+
+module.exports = mongoose.model('Dog', dogSchema);

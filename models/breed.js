@@ -5,7 +5,7 @@ const Dog = require('./dog');
 
 const breedSchema = mongoose.Schema({
   name: { type:String, require:true },
-  dog: {type:mongoose.Schema.Types.ObjectId, ref:'dogs' }
+  dog: {type:mongoose.Schema.Types.ObjectId, ref:'dog' }
 });
 
 breedSchema.pre('save', function(done) {
@@ -22,4 +22,11 @@ breedSchema.pre('save', function(done) {
     .catch(done);
 });
 
-const Breed = module.exports = mongoose.model('Breed', breedSchema);
+breedSchema.pre('findOne', function(){
+  this.populate({
+    path: 'dog'
+  });
+});
+
+
+module.exports = mongoose.model('Breed', breedSchema);

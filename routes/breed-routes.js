@@ -3,6 +3,7 @@
 const express = require('express');
 const jsonParser = require('body-parser').json();
 const Breed = require(__dirname + '/../models/breed');
+const Dog = require(__dirname + '/../models/dog');
 
 const breedRouter = module.exports = express.Router();
 
