@@ -25,7 +25,8 @@
     "dotenv": "^4.0.0",
     "express": "^4.16.2",
     "jest": "^21.2.1",
-    "mongoose": "^4.12.5"
+    "mongoose": "^4.12.5",
+    "morgan": "^1.9.0"
   },
   "devDependencies": {
     "expect": "^21.2.1",

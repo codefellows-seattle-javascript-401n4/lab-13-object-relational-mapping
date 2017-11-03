@@ -9,13 +9,13 @@ const dogRouter = module.exports = express.Router();
 dogRouter.get('/dogs', (req, res, next) => {
   let findObj = req.query || {};
   Dog.find(findObj)
-    .then(bears => res.send(bears))
+    .then(dogs => res.send(dogs))
     .catch(err => next({error: err}));
 });
 
 dogRouter.get('/dogs/:id', (req, res, next) => {
   Dog.findOne({_id: req.params.id})
-    .then(bears => res.send(bears))
+    .then(dogs => res.send(dogs))
     .catch(err => next({error: err}));
 });
 
@@ -29,8 +29,8 @@ dogRouter.post('/dogs', jsonParser, (req, res, next) => {
 dogRouter.put('/dogs/:id', jsonParser, (req, res, next) => {
   delete req.body._id;
   Dog.findOneAndUpdate({_id: req.params.id}, req.body)
-    .then(data => res.send('success!'))
-    .catch(err => next({error: error}));
+    .then(() => res.send('success!'))
+    .catch(err => next({error: err}));
 });
 
 dogRouter.patch('/dogs/:id', jsonParser, (req, res, next) => {
@@ -38,12 +38,12 @@ dogRouter.patch('/dogs/:id', jsonParser, (req, res, next) => {
   //$set will only update the supplied fields
   //instead of replacing the entire object
   Dog.findOneAndUpdate({_id: req.params.id}, {$set: req.body})
-    .then(data => res.send('success!'))
-    .catch(err => next({error: err}))
+    .then(() => res.send('success!'))
+    .catch(err => next({error: err}));
 });
 
 dogRouter.delete('/dogs/:id', (req, res, next) => {
   Dog.remove({_id: req.params.id})
-    .then(data => res.send('dog successfully murdered'))
+    .then(() => res.send('dog successfully murdered'))
     .catch(err => next({error: err}));
 });
