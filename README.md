@@ -8,7 +8,7 @@
  * To post a new cat `echo '{"name":"catName"}' | http :3000/api/v1/cats`
  * To DELETE a cat `http delete :3000/api/v1/cats/-cats id`
  * To PUT a cat `echo '{"name":"catName"}' | put http :3000/api/v1/cats/catID`
- 
+
 
 
 ## Server Endpoints
