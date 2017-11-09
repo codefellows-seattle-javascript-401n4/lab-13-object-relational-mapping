@@ -5,7 +5,7 @@ const expect = require('expect');
 const superagent = require('superagent');
 const mocha = require('mocha');
 const server = require('../index.js');
-process.env.MONGODB_URL = 'mongodb://localhost:27017/lab13';
+process.env.MONGODB_URL || 'mongodb://localhost:27017/lab13';
 const mongoose = require('mongoose');
 const Sushi = require('../models/sushi.js');
 
