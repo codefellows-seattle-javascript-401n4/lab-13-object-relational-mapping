@@ -3,7 +3,7 @@
 const mongoose = require('mongoose');
 
 const sushiSchema = new mongoose.Schema({
-  name:{type: String,required: true, unique:true},
+  name:{type: String,required: true},
   topping:{type: String, default: 'crab'},
   price:{type:Number, min:10},
 });
