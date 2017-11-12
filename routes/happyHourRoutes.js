@@ -22,10 +22,10 @@ happyHourRouter.get('/hours', (req,res,next) => {
 happyHourRouter.get('/hours/:id', (req,res,next) => {
   Hours.findOne({name: /hamachi/})
   .populate('Sushi_id')
-  .exec(function(err,hours){
+  .exec(function(err,Hours){
     if(err) return new Error('err');
   })
-  .then( sushi => res.send(sushi))
+  .then( hours => res.send(hours))
   .catch(err => next(err));
 });
 
