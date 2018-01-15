@@ -18,8 +18,10 @@
   "homepage": "https://github.com/krichey15/lab-13-object-relational-mapping#readme",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "dotenv": "^4.0.0",
     "express": "^4.16.2",
-    "mongoose": "^4.13.9"
+    "mongoose": "^4.13.9",
+    "morgan": "^1.9.0"
   },
   "devDependencies": {
     "expect": "^22.1.0",
