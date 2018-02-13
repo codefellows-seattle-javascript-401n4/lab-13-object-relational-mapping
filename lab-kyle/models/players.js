@@ -6,9 +6,9 @@ const Team = require('./teams');
 const playerSchema = mongoose.Schema({
   name: {type:String, required:true},
   position: {type:String, required:false},
-  number: {type:Number, required:true},
-  bats: {type:String, required:true},
-  throws: {type:String, required:true},
+  number: {type:Number, required:false},
+  bats: {type:String, required:false},
+  throws: {type:String, required:false},
   team: {type:mongoose.Schema.Types.ObjectId, ref:'teams'},
 });
 

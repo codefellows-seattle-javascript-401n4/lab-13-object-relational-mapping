@@ -9,7 +9,7 @@ const playerRouter = module.exports = express.Router();
 playerRouter.post('/players', jsonParser, (req, res, next) => {
   let newPlayer = new Player(req.body);
   newPlayer.save()
-    .then((player) => res.send(player))
+    .then((data) => res.send(data))
     .catch(err => next(err));
 });
 
@@ -31,4 +31,11 @@ playerRouter.get('/player/:id', (req, res, next) => {
   Player.findOne({_id:playerId})
     .then((player) => res.send(player))
     .catch(next);
+});
+
+playerRouter.put('/player/:id', jsonParser, (req, res, next) => {
+  delete req.body._id;
+  Player.findOneAndUpdate({_id: req.params.id}, req.body)
+    .then(() => res.send('success!'))
+    .catch(err => next({error: err}));
 });
