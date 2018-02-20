@@ -1,5 +1,5 @@
 'use strict';
-const Note = require('../models/note');
+const Note = require('../../models/note');
 const bodyParser = require('body-parser');
 const noteRouter = module.exports = require('express').Router();
 

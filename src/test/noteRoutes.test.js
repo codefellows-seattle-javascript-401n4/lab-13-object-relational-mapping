@@ -7,7 +7,7 @@ const express = require('express') ;
 const  expect = require ('expect');
 const  superagent = require ('superagent');
 const  Note = require('../models/note');
-const  noteRouter = require('../lib/routes')
+const  noteRouter = require('../lib/notes')
 const server = require('express')();
 
 server.use(noteRouter);
@@ -38,7 +38,7 @@ describe('Note router:', ()=>{
         })
     })
     it('POST should respond with the body content for a post request with a valid body',()=>{
-        mongoose.connect('mongodb://maslovai:Anna2009@ds239648.mlab.com:39648/labs');
+        mongoose.connect('mongodb://maslovai:Anna2009@ds239648.mlab.com:39648/labs')
         return superagent 
         .post(`http://localhost:${PORT}/api/note`)
         // .set({"Content-Type":"application/json"})

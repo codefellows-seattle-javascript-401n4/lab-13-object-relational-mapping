@@ -2,10 +2,10 @@
 
 const mongoose= (require('mongoose'));
 
-const noteSchema = new mongoose.Schema({
+const notebookSchema = new mongoose.Schema({
   name: {type: String, required: true},
   createDate: {type: Date, default: Date.now()},
-  notebook:{type:String, required: false}
+  notesIds:{type:Array, required: false}
 })
 
-module.exports = mongoose.model('Note', noteSchema);
+module.exports = mongoose.model('Notebooks', notebookSchema);
