@@ -8,11 +8,8 @@ Enter in Command Line
 
 
 ## Program Issues
-* ...
-
-
-## Current Program Status
-* started over with starter code, developer code pending
+* ...depreciation warning (mongoose error) has been solved...somehow...
+* Port issues, argument must be >= 0 and < 65536> (what am I doing wrong with this!!!)
 
 
 ## Developer Installs
